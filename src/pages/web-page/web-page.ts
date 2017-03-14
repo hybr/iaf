@@ -3,13 +3,14 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 @Component({
-  selector: 'page-page2',
-  templateUrl: 'page2.html'
+  selector: 'page-web-page',
+  templateUrl: 'web-page.html'
 })
-export class Page2 {
+export class WebPage {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
+  domainName: 'farm.hybr.in';
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
@@ -18,7 +19,7 @@ export class Page2 {
     // Let's populate this page with some filler content for funzies
     this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
     'american-football', 'boat', 'bluetooth', 'build'];
-
+    
     this.items = [];
     for (let i = 1; i < 11; i++) {
       this.items.push({
@@ -31,7 +32,7 @@ export class Page2 {
 
   itemTapped(event, item) {
     // That's right, we're pushing to ourselves!
-    this.navCtrl.push(Page2, {
+    this.navCtrl.push(WebPage, {
       item: item
     });
   }
