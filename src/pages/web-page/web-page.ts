@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-
 import { NavController, NavParams } from 'ionic-angular';
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'page-web-page',
@@ -10,9 +10,23 @@ export class WebPage {
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
-  domainName: 'farm.hybr.in';
+  webDomainName: string;
+  organizationName: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    public storage: Storage
+  ) {
+    /* get web domain name from local storage, saved during the app component */
+    this.storage.get('web_domain_name').then((val) => {
+         this.webDomainName = val;
+    });
+    /* get organization name from local storage, saved during the app component */
+    this.storage.get('organization_name').then((val) => {
+         this.organizationName = val;
+    });
+    
     // If we navigated to this page, we will have an item available as a nav param
     this.selectedItem = navParams.get('item');
 
@@ -24,7 +38,7 @@ export class WebPage {
     for (let i = 1; i < 11; i++) {
       this.items.push({
         title: 'Item ' + i,
-        note: 'This is item #' + i,
+        note: 'This this.is item #' + i,
         icon: this.icons[Math.floor(Math.random() * this.icons.length)]
       });
     }
