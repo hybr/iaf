@@ -7,11 +7,14 @@ import { Storage } from '@ionic/storage';
   templateUrl: 'web-page.html'
 })
 export class WebPage {
+  webDomainName: string;
+  organizationName: string;
+  isAllowed: boolean = false;
+  
   selectedItem: any;
   icons: string[];
   items: Array<{title: string, note: string, icon: string}>;
-  webDomainName: string;
-  organizationName: string;
+
 
   constructor(
     public navCtrl: NavController, 
@@ -25,6 +28,10 @@ export class WebPage {
     /* get organization name from local storage, saved during the app component */
     this.storage.get('organization_name').then((val) => {
          this.organizationName = val;
+    });
+    /* get user permissions from local storage */
+    this.storage.get('logged_in_user_responsibilities').then((val) => {
+         this.isAllowed = (val.indexOf("web-page_view") != -1);
     });
     
     // If we navigated to this page, we will have an item available as a nav param

@@ -6,6 +6,9 @@ import { Storage } from '@ionic/storage';
 import { Home } from '../pages/home/home';
 import { WebPage } from '../pages/web-page/web-page';
 
+import { LoginPage } from '../pages/login/login';
+import { RegisterPage } from '../pages/register/register';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -23,7 +26,9 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
       { title: 'Home', component: Home },
-      { title: 'About', component: WebPage }
+      { title: 'About', component: WebPage },
+      { title: 'Login', component: LoginPage },
+      { title: 'Register', component: RegisterPage }
     ];
 
   }
@@ -46,10 +51,13 @@ export class MyApp {
     this.storage.ready().then(() => {
        this.storage.set('web_domain_name', this._2g());
        this.storage.set('organization_name', this._1g);
-       this.storage.get('web_domain_name').then((val) => {
-         console.log('STORAGE: web_domain_name = ', val);
-       });
+       /* get user information once it login */
+       this.storage.set('logged_in_user_responsibilities', [
+         'web-page_view'
+       ]);
      });
+     
+     
     
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.

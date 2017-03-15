@@ -7,7 +7,15 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content padding>
+  <span *ngIf="!isAllowed" color="danger">
+    <ion-card>
+      <ion-card-header color="primary">Permission</ion-card-header>
+      <ion-card-content color="danger">You are not authorized.</ion-card-content>
+    </ion-card>  
+  </span>
+
+  <span *ngIf="isAllowed">
   <ion-list>
     <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
       <ion-icon [name]="item.icon" item-left></ion-icon>
@@ -20,4 +28,5 @@
   <div *ngIf="selectedItem" padding>
     You navigated here from <b>{{selectedItem.title}}</b>
   </div>
+  </span>
 </ion-content>

@@ -6,11 +6,17 @@ import { IonicStorageModule } from '@ionic/storage';
 import { Home } from '../pages/home/home';
 import { WebPage } from '../pages/web-page/web-page';
 
+import { LoginPage } from '../pages/login/login';
+import { AuthService } from '../providers/auth-service';
+import { RegisterPage } from '../pages/register/register';
+
 @NgModule({
   declarations: [
     MyApp,
     Home,
-    WebPage
+    WebPage,
+    LoginPage,
+    RegisterPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -20,8 +26,13 @@ import { WebPage } from '../pages/web-page/web-page';
   entryComponents: [
     MyApp,
     Home,
-    WebPage
+    WebPage,
+    LoginPage,
+    RegisterPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}]
+  providers: [{
+    provide: ErrorHandler,
+    useClass: IonicErrorHandler
+  }]
 })
 export class AppModule {}
