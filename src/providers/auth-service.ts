@@ -3,31 +3,8 @@ import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Rx';
 
-export class User {
-  name: string;
-  email: string;
-  password: string;
- 
-  constructor(
-    name: string, 
-    email: string,
-    password: string
-  ) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-  }
-}
-
-export class Person {
-  name: string;
-
-  constructor(
-    name: string
-  ) {
-    this.name = name;
-  }
-}
+import {User} from './../collections/user';
+import {Person} from './../collections/person';
 
 @Injectable()
 export class AuthService {
@@ -37,7 +14,8 @@ export class AuthService {
   }
 
   currentUser: User;
- 
+  currentPerson: Person;
+  
   public login(credentials) {
     if (credentials.email === null || credentials.password === null) {
       return Observable.throw("Please insert credentials");
@@ -45,7 +23,8 @@ export class AuthService {
       return Observable.create(observer => {
         // At this point make a request to your backend to make a real check!
         let access = (credentials.password === "pass" && credentials.email === "email");
-        this.currentUser = new User('Super User', 'admin@domain.com', 'abc123');
+        this.currentPerson = new Person('Sure User');
+        this.currentUser = new User('admin@domain.com', 'abc123', this.currentPerson);
         observer.next(access);
         observer.complete();
       });
