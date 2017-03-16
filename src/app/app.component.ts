@@ -48,17 +48,17 @@ export class MyApp {
   };
 
   initializeApp() {
-    this.storage.ready().then(() => {
-       this.storage.set('web_domain_name', this._2g());
-       this.storage.set('organization_name', this._1g);
-       /* get user information once it login */
-       this.storage.set('logged_in_user_responsibilities', [
-         'web-page_view'
-       ]);
-     });
-     
-     
     
+    this.storage.ready().then(() => {
+      var responsibilities = [];
+      this.storage.set('web_domain_name', this._2g());
+      this.storage.set('organization_name', this._1g);
+      /* public features are added to allowed responsibilities */
+      responsibilities.push('web-page_view');
+      responsibilities.push('login_view');
+      this.storage.set('logged_in_user_responsibilities', responsibilities);
+    });
+     
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
