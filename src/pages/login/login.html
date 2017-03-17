@@ -16,46 +16,52 @@
   </span>
 
   <span *ngIf="isAllowed">
-
-  <ion-grid>
   
-  <ion-row>
-    <ion-col></ion-col>
-    <ion-col width-67>
-      <img src="http://placehold.it/300x200"/>
-    </ion-col>
-    <ion-col></ion-col>
-  </ion-row>
+  <ion-icon name="send" item-left></ion-icon>
+  
+  <form (ngSubmit)="login()" #registerForm="ngForm">
 
-  <div>
-    <form (ngSubmit)="login()" #registerForm="ngForm">
-      <ion-row>
-        <ion-col>
-          <ion-list inset>
-            
-            <ion-item>
-              <ion-input type="text" placeholder="Email" name="email" required></ion-input>
-            </ion-item>
-            
-            <ion-item>
-              <ion-input type="password" placeholder="Password" name="password" ></ion-input>
-            </ion-item>
-            
-          </ion-list>
-        </ion-col>
-      </ion-row>
-      
-      <ion-row>
-        <ion-col>
-          <button ion-button full type="submit" [disabled]="!registerForm.form.valid">Login</button>
-          <button ion-button block clear (click)="createAccount()">Create New Account</button>
-        </ion-col>
-      </ion-row>
-      
+	
+	
+	<ion-card fixed>
+  <ion-card-header style="background-color:'primary'" >
+    User Login
+  </ion-card-header>
+<ion-card-content>
+		<ion-list inset>
+		
+		<ion-item>
+			<ion-icon name="person" item-left></ion-icon>
+			<ion-label for="user_id">Username</ion-label>
+			<ion-input id="user_id" name="username" type="text"></ion-input>
+		</ion-item>
+		
+		<ion-item>
+			<ion-icon name="key" item-left></ion-icon>
+			<ion-label for="password_id" >Password</ion-label>
+			<ion-input id="password_id" type="password"></ion-input>
+		</ion-item>
+		
+		<ion-item>
+				
+				
+		      <button block ion-button type="submit" [disabled]="!registerForm.form.valid">
+		      <ion-icon name="send" item-left></ion-icon>Login</button>
+	     </ion-item>
+	     
+	   	<ion-item>
+	   			
+	          <button block ion-button clear (click)="createAccount()">
+	          <ion-icon name="person-add" item-left></ion-icon>
+	          	Create New Account
+	          </button>
+	     </ion-item>  
+	</ion-list>
+</ion-card-content>
+  </ion-card>
+  
     </form>
-  </div>
-  </ion-grid>
-  
+
   
   </span>
 </ion-content>
